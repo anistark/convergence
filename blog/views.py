@@ -10,3 +10,7 @@ def home(request):
 def post(request):
        context = {'title':'Convergence | Post'}
        return render_to_response('post.html', context, context_instance=RequestContext(request))
+
+def admin(request):
+       context = {'title':'Convergence | Admin'}
+       return render_to_response('admin/index.html', context, context_instance=RequestContext(request))
