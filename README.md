@@ -12,8 +12,8 @@ Start your mongodb: mongod
 Make sure the file is maintained in pep8 standards.
 
 Run : 
-	```
-	pep8 --first filename.py
-	pep8 --show-source --show-pep8 filename.py
-	```
+```
+pep8 --first filename.py
+pep8 --show-source --show-pep8 filename.py
+```
 

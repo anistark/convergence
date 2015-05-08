@@ -1,11 +1,12 @@
 from django.db import models
 
 # Create your models here.
-# 
+
 from mongoengine import *
 from convergence.settings import DBNAME
 
 connect(DBNAME)
+
 
 class Post(Document):
     title = StringField(max_length=120, required=True)
