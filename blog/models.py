@@ -10,7 +10,7 @@ connect(DBNAME)
 
 class Post(Document):
     title = StringField(max_length=120, required=True)
-    title_image = URLField()
+    title_image = models.ImageField(upload_to= 'images/%Y/%m/%d')
     post_url = StringField(required=True)
     author = StringField(max_length=120, required=True)
     content = StringField(max_length=500, required=True)
