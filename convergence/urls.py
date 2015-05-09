@@ -12,5 +12,7 @@ urlpatterns = patterns('',
 	url(r'^post/', 'blog.views.post', name='post'),
 
 	# Admin Pages
-	url(r'^admin/', 'blog.views.admin', name='admin'),
+	url(r'^admin/home', 'blog.views.admin', name='admin'),
+	url(r'^admin/posts/edit', 'blog.views.admin_edit_posts', name='edit_posts'),
+
 )
