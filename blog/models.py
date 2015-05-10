@@ -4,6 +4,7 @@ from django.db import models
 
 from mongoengine import *
 
+
 class Post(models.Model):
     title = models.CharField(max_length=120)
     title_image = models.ImageField(upload_to='images/%Y/%m/%d')
@@ -14,7 +15,7 @@ class Post(models.Model):
 
 
 class User(models.Model):
-	email=models.EmailField()
-	username= models.CharField(max_length=30)
-	password=models.CharField(max_length=30)
-	signuptime=models.DateTimeField()
+    email = models.EmailField()
+    username = models.CharField(max_length=30)
+    password = models.CharField(max_length=30)
+    signuptime = models.DateTimeField()

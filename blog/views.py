@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from models import Post,User
+from models import Post, User
 import datetime
 import uuid
 
