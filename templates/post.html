@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} Convergence {% endblock %}
 {% block content %}
-{% for post in Posts %}
+{% for post in posts %}
     <div class="blog-item">
         <div class="row">
             <div class="col-xs-12 col-sm-2 text-center">
@@ -17,7 +17,7 @@
                 <a href="#"><img class="img-responsive img-blog" src="{{STATIC_URL}}images/blog/blog1.jpg" width="100%" alt="" /></a>
                 <h2><a href="blog-item.html">{{ post.title }}</a></h2>
                 <h3>{{ post.content }}</h3>
-                <a class="btn btn-primary readmore" href="blog-item.html">Read More <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-primary readmore" href="post.html">Read More <i class="fa fa-angle-right"></i></a>
             </div>
         </div>    
     </div><!--/.blog-item-->

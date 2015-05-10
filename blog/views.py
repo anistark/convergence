@@ -9,18 +9,17 @@ import uuid
 
 def home(request):
     posts = Post.objects.all()
-    context = {'title': 'Convergence'}
+    context = {'title': 'Convergence', 'posts': posts}
     return render_to_response(
         'index.html',
-        {
-          'posts': posts
-        },
+        context,
         context_instance=RequestContext(request)
       )
 
 
 def post(request):
-    context = {'title': 'Convergence | Post'}
+    posts = Post.objects.all()
+    context = {'title': 'Convergence | Post', 'posts': posts}
     return render_to_response(
         'post.html',
         context,
