@@ -175,12 +175,9 @@
     				<div class="widget blog_gallery">
                         <h3>Our Gallery</h3>
                         <ul class="sidebar-gallery">
-                            <li><a href="#"><img src="{{STATIC_URL}}images/blog/gallery1.png" alt="" /></a></li>
-                            <li><a href="#"><img src="{{STATIC_URL}}images/blog/gallery2.png" alt="" /></a></li>
-                            <li><a href="#"><img src="{{STATIC_URL}}images/blog/gallery3.png" alt="" /></a></li>
-                            <li><a href="#"><img src="{{STATIC_URL}}images/blog/gallery4.png" alt="" /></a></li>
-                            <li><a href="#"><img src="{{STATIC_URL}}images/blog/gallery5.png" alt="" /></a></li>
-                            <li><a href="#"><img src="{{STATIC_URL}}images/blog/gallery6.png" alt="" /></a></li>
+                            {% for post in posts %}
+                            <li><a href="#"><img src="{{MEDIA_URL}}{{post.title_image}}" width="20%" alt="" /></a></li>
+                            {% endfor %}
                         </ul>
                     </div><!--/.blog_gallery-->
     					

@@ -57,3 +57,6 @@ target/
 db.*
 
 .DS_Store
+
+# Image Uploads
+static/uploads/media/*

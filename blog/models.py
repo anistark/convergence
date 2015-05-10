@@ -3,15 +3,12 @@ from django.db import models
 # Create your models here.
 
 from mongoengine import *
-from convergence.settings import DBNAME
-
-connect(DBNAME)
 
 
-class Post(Document):
-    title = StringField(max_length=120, required=True)
-    title_image = models.ImageField(upload_to= 'images/%Y/%m/%d')
-    post_url = StringField(required=True)
-    author = StringField(max_length=120, required=True)
-    content = StringField(max_length=500, required=True)
-    last_update = DateTimeField(required=True)
+class Post(models.Model):
+    title = models.CharField(max_length=120)
+    title_image = models.ImageField(upload_to='images/%Y/%m/%d')
+    post_url = models.CharField(max_length=120)
+    author = models.CharField(max_length=120)
+    content = models.CharField(max_length=500)
+    last_update = models.DateTimeField()
