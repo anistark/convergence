@@ -4,7 +4,6 @@ from django.db import models
 
 from mongoengine import *
 
-
 class Post(models.Model):
     title = models.CharField(max_length=120)
     title_image = models.ImageField(upload_to='images/%Y/%m/%d')
