@@ -11,3 +11,10 @@ class Post(models.Model):
     author = models.CharField(max_length=120)
     content = models.CharField(max_length=500)
     last_update = models.DateTimeField()
+
+
+class User(models.Model):
+	email=models.EmailField()
+	username= models.CharField(max_length=30)
+	password=models.CharField(max_length=30)
+	signuptime=models.DateTimeField()

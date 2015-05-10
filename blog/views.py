@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from models import Post
+from models import Post,User
 import datetime
 import uuid
 
@@ -51,6 +51,21 @@ def admin_edit_posts(request):
     context = {'title': 'Convergence | Edit Post'}
     return render_to_response(
         'admin/edit_posts.html',
+        context,
+        context_instance=RequestContext(request)
+      )
+
+
+def login_register(request):
+    if request.method == 'POST' or request.method == 'FILES':
+        user.email = request.POST['email']
+        user.username = request.POST['username']
+        user.password = request.POST['passwd']
+        user.signuptime = datetime.datetime.now()
+        user.save()
+    context = {'title': 'Convergence | login_register'}
+    return render_to_response(
+        'login_register.html',
         context,
         context_instance=RequestContext(request)
       )
