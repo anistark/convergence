@@ -56,16 +56,19 @@ def admin_edit_posts(request):
       )
 
 
-def login_register(request):
+def user_register(request):
     if request.method == 'POST' or request.method == 'FILES':
+        user = User()
         user.email = request.POST['email']
-        user.username = request.POST['username']
-        user.password = request.POST['passwd']
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.password = request.POST['password']
         user.signuptime = datetime.datetime.now()
         user.save()
-    context = {'title': 'Convergence | login_register'}
+    posts = Post.objects.all()
+    context = {'title': 'Convergence | Welcome', 'posts': posts}
     return render_to_response(
-        'login_register.html',
+        'index.html',
         context,
         context_instance=RequestContext(request)
       )

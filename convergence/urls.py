@@ -16,5 +16,5 @@ urlpatterns = patterns('',
 	url(r'^admin/posts/edit', 'blog.views.admin_edit_posts', name='edit_posts'),
 
 	# login Pages
-	url(r'^login_register/', 'blog.views.login_register', name='login_register'),
+	url(r'^user/register', 'blog.views.user_register', name='user.register'),
 )
