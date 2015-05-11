@@ -17,9 +17,9 @@ def home(request):
       )
 
 
-def post(request):
-    posts = Post.objects.all()
-    context = {'title': 'Convergence | Post', 'posts': posts}
+def article(request, postid):
+    posts = Post.objects.get(post_url=postid)
+    context = {'title': 'Convergence | Post', 'post': posts}
     return render_to_response(
         'post.html',
         context,

@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 	# url(r'^convergence/', include('convergence.foo.urls')),
 
 	url(r'^$', 'blog.views.home', name='home'),
-	url(r'^post/', 'blog.views.post', name='post'),
+	url(r'^article/(?P<postid>\w+)/', 'blog.views.article', name='article'),
 
 	# Admin Pages
 	url(r'^admin/home', 'blog.views.admin', name='admin'),
