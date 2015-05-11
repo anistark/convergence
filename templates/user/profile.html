@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block title %} Convergence {% endblock %}
+{% extends 'user/user_base.html' %}
+{% block title %} {{title}} {% endblock %}
 {% block content %}
 {% for post in posts %}
     <div class="blog-item">
@@ -15,7 +15,7 @@
                 
             <div class="col-xs-12 col-sm-10 blog-content">
                 <a href="#"><img class="img-responsive img-blog" src="{{MEDIA_URL}}{{post.title_image}}" width="100%" alt="" /></a>
-                <h2><a href="{% url 'article' post.post_url %}">{{ post.title }}</a></h2>
+                <h2><a href="blog-item.html">{{ post.title }}</a></h2>
                 <h3>{{ post.content }}</h3>
                 <a class="btn btn-primary readmore" href="{% url 'article' post.post_url %}">Read More <i class="fa fa-angle-right"></i></a>
             </div>

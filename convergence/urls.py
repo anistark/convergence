@@ -15,6 +15,10 @@ urlpatterns = patterns('',
 	url(r'^admin/home', 'blog.views.admin', name='admin'),
 	url(r'^admin/posts/edit', 'blog.views.admin_edit_posts', name='edit_posts'),
 
-	# login Pages
+	# login/register Pages
 	url(r'^user/register', 'blog.views.user_register', name='user.register'),
+
+	# User Pages
+	url(r'^user/(?P<userid>\w+)/', 'blog.views.user_profile', name='user.profile'),
+
 )
