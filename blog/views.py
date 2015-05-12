@@ -9,7 +9,7 @@ import re
 
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-last_update')
     context = {'title': 'Convergence', 'posts': posts}
     return render_to_response(
         'index.html',
