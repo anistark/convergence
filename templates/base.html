@@ -87,14 +87,19 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Register</h4>
                     </div>
+                    {% if form.errors %}
+                        <div class="alert alert-error">
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
                     <form method="post" action="{% url 'user.register' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="modal-body">
-                            <input type="text" class="form-control" name="first_name" value="" placeholder="First name"><br>
-                            <input type="text" class="form-control" name="last_name" value="" placeholder="Last name"><br>
-                            <input type="text" class="form-control" name="user_name" value="" placeholder="UserName"><br>
-                            <input type="text" class="form-control" name="email" value="" placeholder="Email"><br>
-                            <input type="password" class="form-control" name="password" value="" placeholder="Password"><br>
+                            <input type="text" class="form-control" name="first_name" value="" placeholder="First name" required pattern="[a-zA-Z]+"><br>
+                            <input type="text" class="form-control" name="last_name" value="" placeholder="Last name" required pattern="[a-zA-Z]+"><br>
+                            <input type="text" class="form-control" name="user_name" value="" placeholder="UserName" required><br>
+                            <input type="email" class="form-control" name="email" value="" placeholder="Email" required><br>
+                            <input type="password" class="form-control" name="password" value="" placeholder="Password" required><br>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Login</button>
@@ -113,18 +118,24 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    {% if form.errors %}
+                        <div class="alert alert-error">
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
+                    <form method="post"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="modal-body">
                             <input type="text" class="form-control" name="email" value="" placeholder="Username / Email"><br>
                             <input type="password" class="form-control" name="password" value="" placeholder="Password">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#forgetPasswordModal">Forget Password</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Login</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#forgetPasswordModal">Forget Password</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -136,15 +147,15 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Forgot your Password?</h4>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
                             <input type="text" class="form-control" name="email" value="" placeholder="Username / Email"><br>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Reset your password</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Reset your password</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
