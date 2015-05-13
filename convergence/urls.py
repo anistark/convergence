@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 	url(r'^article/(?P<postid>\w+)/', 'blog.views.article', name='article'),
 
 	# Admin Pages
-	url(r'^admin/home', 'blog.views.admin', name='admin'),
+	url(r'^admin/$', 'blog.views.admin', name='admin'),
 	url(r'^admin/posts/edit', 'blog.views.admin_edit_posts', name='edit_posts'),
 
 	# login/register Pages
