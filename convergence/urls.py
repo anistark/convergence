@@ -18,6 +18,12 @@ urlpatterns = patterns('',
 	# login/register Pages
 	url(r'^user/register', 'blog.views.user_register', name='user.register'),
 
+	# login/login Pages
+	#url(r'^user/login', 'blog.views.user_login', name='user.login'),
+
+	# login/forget password Pages
+	#url(r'^user/forgetpasword', 'blog.views.user_forgetpasword', name='user.forgetpasword'),
+
 	# User Pages
 	url(r'^user/(?P<userid>\w+)/', 'blog.views.user_profile', name='user.profile'),
 

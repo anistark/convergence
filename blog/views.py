@@ -3,12 +3,13 @@ from django.template import RequestContext
 from models import Post, User
 import datetime
 import uuid
+import re
 
 # Create your views here.
 
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-last_update')
     context = {'title': 'Convergence', 'posts': posts}
     return render_to_response(
         'index.html',
@@ -60,21 +61,38 @@ def admin_edit_posts(request):
 
 def user_register(request):
     if request.method == 'POST' or request.method == 'FILES':
-        user = User()
-        user.email = request.POST['email']
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.username = request.POST['user_name']
-        user.password = request.POST['password']
-        user.signuptime = datetime.datetime.now()
-        user.save()
-    posts = Post.objects.all()
-    context = {'title': 'Convergence | Welcome', 'posts': posts}
+        if(re.match(r'\b[\w.-]+@[\w.-]+.\w{2,4}\b', request.POST['email'])):
+            user = User()
+            user.email = request.POST['email']
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
+            user.username = request.POST['user_name']
+            user.password = request.POST['password']
+            user.signuptime = datetime.datetime.now()
+            user.save()
+        else:
+            print 'email is invalid'            
+    user = User.objects.all()
+    context = {'title': 'Convergence | Welcome', 'user': user}
     return render_to_response(
         'index.html',
         context,
         context_instance=RequestContext(request)
       )
+
+# def user_login(request):
+#     user_email = User.objects.get(email=email)
+#     user_pswd = User.objects.get(password=password)
+#     # if((request.POST['email'] == user_email) && (request.POST['password'] == user_pswd)):
+#     #     print 'you are loged in'
+#     # else
+#     #     print 'your credential are wrong'
+#     context = {'title': 'Convergence | My Profile', 'user_email': user_email}
+#     return render_to_response(
+#         'index.html',
+#         context,
+#         context_instance=RequestContext(request)
+#       )
 
 
 def user_profile(request, userid):

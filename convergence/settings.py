@@ -16,7 +16,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django_mongodb_engine',
         # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'convergence_blog',
+        'NAME': 'c_blog',
         # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
