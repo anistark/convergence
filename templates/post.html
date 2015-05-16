@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Convergence {% endblock %}
+{% block content %}
+<div class="blog-item">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2 text-center">
+            <div class="entry-meta">
+                <span id="publish_date">{{post.last_update}}</span>
+                <span><i class="fa fa-user"></i> <a href="#">{{post.author}}</a></span>
+                <!--span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
+                <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span-->
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-10 blog-content">
+            <a href="#"><img class="img-responsive img-blog" src="{{MEDIA_URL}}{{post.title_image}}" width="100%" alt="" /></a>
+            <h2><a href="blog-item.html">{{ post.title }}</a></h2>
+            <h3>{{ post.content }}</h3>
+        </div>
+    </div>
+</div><!--/.blog-item-->
+{% endblock %}
