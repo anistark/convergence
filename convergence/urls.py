@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 
 	# Admin Pages
 	url(r'^admin/$', 'blog.views.admin', name='admin'),
-	url(r'^admin/posts/edit', 'blog.views.admin_edit_posts', name='edit_posts'),
+	url(r'^admin/posts/edit', 'blog.views.admin_edit_posts', name='admin.edit_posts'),
 
 	# login/register Pages
 	url(r'^user/register', 'blog.views.user_register', name='user.register'),
