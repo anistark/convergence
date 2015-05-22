@@ -14,7 +14,8 @@ install:
   # - pip install coveralls
 
 script:
-- flake8
+- flake8 convergence/
+- flake8 blog/
 # - coverage run --source=junction --omit='*tests*,*commands*,*migrations*,*admin*,*wsgi*' -m py.test -v --tb=native
 # - coverage report
 
