@@ -13,8 +13,4 @@ Start your mongodb: mongod
 ## Before Commiting anything:
 Make sure the file is maintained in pep8 standards.
 
-Run : 
-```
-flake8
-```
-
+Run flake8 across python file before sending PR.

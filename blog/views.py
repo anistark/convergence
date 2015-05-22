@@ -17,8 +17,7 @@ def home(request):
     return render_to_response(
         'index.html',
         context,
-        context_instance=RequestContext(request)
-      )
+        context_instance=RequestContext(request))
 
 
 def article(request, postid):
@@ -27,8 +26,7 @@ def article(request, postid):
     return render_to_response(
         'post.html',
         context,
-        context_instance=RequestContext(request)
-      )
+        context_instance=RequestContext(request))
 
 
 def admin(request):
@@ -36,8 +34,7 @@ def admin(request):
     return render_to_response(
         'admin/index.html',
         context,
-        context_instance=RequestContext(request)
-      )
+        context_instance=RequestContext(request))
 
 
 def admin_edit_posts(request):
@@ -45,7 +42,7 @@ def admin_edit_posts(request):
         # save new post
         title = request.POST['title']
         # print(request.POST[all])
-        admin_username = 'anistark';
+        admin_username = 'anistark'
         post = Post(title=title)
         post.author = request.POST['author']
         post.last_update = datetime.datetime.now()
@@ -58,8 +55,7 @@ def admin_edit_posts(request):
     return render_to_response(
         'admin/edit_posts.html',
         context,
-        context_instance=RequestContext(request)
-      )
+        context_instance=RequestContext(request))
 
 
 # def admin_edit_posts(request):
@@ -82,8 +78,7 @@ def admin_edit_posts(request):
 #     return render_to_response(
 #         'admin/edit_posts.html',
 #         context,
-#         context_instance=RequestContext(request)
-#       )
+#         context_instance=RequestContext(request))
 
 
 def user_register(request):
@@ -95,32 +90,20 @@ def user_register(request):
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.username = request.POST['user_name']
-            user.password = make_password(user_password, salt=None, hasher='default')
+            user.password = make_password(
+                user_password,
+                salt=None,
+                hasher='default')
             user.signuptime = datetime.datetime.now()
             user.save()
         else:
-            print 'email is invalid'            
+            print 'email is invalid'
     user = User.objects.all()
     context = {'title': 'Convergence | Welcome', 'user': user}
     return render_to_response(
         'index.html',
         context,
-        context_instance=RequestContext(request)
-      )
-
-def user_login(request):
-    user_email = User.objects.get(email=email)
-    user_pswd = User.objects.get(password=password)
-    # if((request.POST['email'] == user_email) && (request.POST['password'] == user_pswd)):
-    #     print 'you are loged in'
-    # else
-    #     print 'your credential are wrong'
-    context = {'title': 'Convergence | My Profile', 'user_email': user_email}
-    return render_to_response(
-        'index.html',
-        context,
-        context_instance=RequestContext(request)
-      )
+        context_instance=RequestContext(request))
 
 
 def user_profile(request, userid):
@@ -129,6 +112,4 @@ def user_profile(request, userid):
     return render_to_response(
         'user/profile.html',
         context,
-        context_instance=RequestContext(request)
-      )
-
+        context_instance=RequestContext(request))

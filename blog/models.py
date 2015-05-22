@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-from mongoengine import *
+# from mongoengine import *
 
 
 class Post(models.Model):
@@ -22,4 +22,3 @@ class User(models.Model):
     last_name = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
     signuptime = models.DateTimeField()
-
