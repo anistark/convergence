@@ -20,13 +20,13 @@
         <h1>Post Here</h1>
         <form method="post" action="{% url 'admin.edit_posts' %}" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form }}
-          <!--p>
+          <!-- {{ form }} -->
+          <p>
               <input type="text" name="title" class="form-control" placeholder="Post Title" required><br>
               <input type="text" name="author" class="form-control" placeholder="Author" required><br>
               Title Image <input type="file" name="titleimgfile" class="form-control" placeholder="Choose Post Title Image" required><br>
               <textarea  name="content" class="form-control" placeholder="Enter Content" rows=5 required></textarea><br>
-          </p-->
+          </p>
           <br>
           <input class="btn btn-success" type="submit" value="Add Post">
         </form>

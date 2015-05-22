@@ -4,8 +4,9 @@ from models import Post, User
 import datetime
 import uuid
 import re
+from django.contrib.auth.hashers import make_password
 
-from .forms import EditPosts
+# from .forms import EditPosts
 
 # Create your views here.
 
@@ -39,45 +40,21 @@ def admin(request):
       )
 
 
-# def admin_edit_posts(request):
-#     if request.method == 'POST' or request.method == 'FILES':
-#         # save new post
-#         title = request.POST['title']
-#         # print(request.POST[all])
-#         admin_username = 'anistark';
-#         post = Post(title=title)
-#         post.author = request.POST['author']
-#         post.last_update = datetime.datetime.now()
-#         post.content = request.POST['content']
-#         post.title_image = request.FILES['titleimgfile']
-#         post.post_url = str(uuid.uuid4().get_hex().upper()[0:16])
-#         post.added_by = admin_username
-#         post.save()
-#     context = {'title': 'Convergence | Edit Post'}
-#     return render_to_response(
-#         'admin/edit_posts.html',
-#         context,
-#         context_instance=RequestContext(request)
-#       )
-
-
 def admin_edit_posts(request):
-    # if this is a POST request we need to process the form data
     if request.method == 'POST' or request.method == 'FILES':
-        # create a form instance and populate it with data from the request:
-        form = EditPosts(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('admin.edit_posts')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = EditPosts()
-
-    context = {'title': 'Convergence | Edit Post', 'form': form}
+        # save new post
+        title = request.POST['title']
+        # print(request.POST[all])
+        admin_username = 'anistark';
+        post = Post(title=title)
+        post.author = request.POST['author']
+        post.last_update = datetime.datetime.now()
+        post.content = request.POST['content']
+        post.title_image = request.FILES['titleimgfile']
+        post.post_url = str(uuid.uuid4().get_hex().upper()[0:16])
+        post.added_by = admin_username
+        post.save()
+    context = {'title': 'Convergence | Edit Post'}
     return render_to_response(
         'admin/edit_posts.html',
         context,
@@ -85,15 +62,40 @@ def admin_edit_posts(request):
       )
 
 
+# def admin_edit_posts(request):
+#     # if this is a POST request we need to process the form data
+#     if request.method == 'POST' or request.method == 'FILES':
+#         # create a form instance and populate it with data from the request:
+#         form = EditPosts(request.POST)
+#         # check whether it's valid:
+#         if form.is_valid():
+#             # process the data in form.cleaned_data as required
+#             # ...
+#             # redirect to a new URL:
+#             return HttpResponseRedirect('admin.edit_posts')
+
+#     # if a GET (or any other method) we'll create a blank form
+#     else:
+#         form = EditPosts()
+
+#     context = {'title': 'Convergence | Edit Post', 'form': form}
+#     return render_to_response(
+#         'admin/edit_posts.html',
+#         context,
+#         context_instance=RequestContext(request)
+#       )
+
+
 def user_register(request):
     if request.method == 'POST' or request.method == 'FILES':
         if(re.match(r'\b[\w.-]+@[\w.-]+.\w{2,4}\b', request.POST['email'])):
+            user_password = request.POST['password']
             user = User()
             user.email = request.POST['email']
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.username = request.POST['user_name']
-            user.password = request.POST['password']
+            user.password = make_password(user_password, salt=None, hasher='default')
             user.signuptime = datetime.datetime.now()
             user.save()
         else:
@@ -106,19 +108,19 @@ def user_register(request):
         context_instance=RequestContext(request)
       )
 
-# def user_login(request):
-#     user_email = User.objects.get(email=email)
-#     user_pswd = User.objects.get(password=password)
-#     # if((request.POST['email'] == user_email) && (request.POST['password'] == user_pswd)):
-#     #     print 'you are loged in'
-#     # else
-#     #     print 'your credential are wrong'
-#     context = {'title': 'Convergence | My Profile', 'user_email': user_email}
-#     return render_to_response(
-#         'index.html',
-#         context,
-#         context_instance=RequestContext(request)
-#       )
+def user_login(request):
+    user_email = User.objects.get(email=email)
+    user_pswd = User.objects.get(password=password)
+    # if((request.POST['email'] == user_email) && (request.POST['password'] == user_pswd)):
+    #     print 'you are loged in'
+    # else
+    #     print 'your credential are wrong'
+    context = {'title': 'Convergence | My Profile', 'user_email': user_email}
+    return render_to_response(
+        'index.html',
+        context,
+        context_instance=RequestContext(request)
+      )
 
 
 def user_profile(request, userid):
