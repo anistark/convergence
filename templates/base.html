@@ -112,7 +112,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                     </div>
-                    <form method="post"  enctype="multipart/form-data">
+                    <form method="post" action="{% url 'user.login' %}"  enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="modal-body">
                             <input type="text" class="form-control" name="email" value="" placeholder="Username / Email"><br>

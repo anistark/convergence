@@ -1,10 +1,10 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from models import Post, User
 import datetime
 import uuid
 import re
-from django.contrib.auth.hashers import make_password
+# from django.contrib.auth.hashers import make_password, check_password
 
 # from .forms import EditPosts
 
@@ -90,10 +90,7 @@ def user_register(request):
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.username = request.POST['user_name']
-            user.password = make_password(
-                user_password,
-                salt=None,
-                hasher='default')
+            user.password = user_password
             user.signuptime = datetime.datetime.now()
             user.save()
         else:
@@ -106,8 +103,34 @@ def user_register(request):
         context_instance=RequestContext(request))
 
 
-def user_profile(request, userid):
-    user = User.objects.get(id=userid)
+def user_login(request):
+    if request.method == 'POST':
+        input_email = request.POST['email']
+        if(re.match(r'\b[\w.-]+@[\w.-]+.\w{2,4}\b', input_email)):
+            user_password = request.POST['password']
+            user = User.objects.get(email=input_email)
+            if(user):
+                if(user.password != user_password):
+                    # false
+                    context = {'title': 'Convergence | Welcome'}
+                    return render_to_response(
+                        'index.html',
+                        context,
+                        context_instance=RequestContext(request))
+                else:
+                    # login
+                    context = {'title': 'Convergence | Welcome ', 'user': user}
+                    return redirect('user.profile', user.username)
+                    # return render_to_response(
+                    #     'user/profile.html',
+                    #     context,
+                    #     context_instance=RequestContext(request))
+            else:
+                print 'email is invalid'
+
+
+def user_profile(request, username):
+    user = User.objects.get(username=username)
     context = {'title': 'Convergence | My Profile', 'user': user}
     return render_to_response(
         'user/profile.html',

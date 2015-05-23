@@ -10,7 +10,7 @@ Start your mongodb: mongod
 ./manage.py runserver
 
 
-## Before Commiting anything:
+## Before sending PULL REQUESTS:
 Make sure the file is maintained in pep8 standards.
 
-Run flake8 across python file before sending PR.
+Run flake8 across python file before sending PR, otherwise it might not get merged.
