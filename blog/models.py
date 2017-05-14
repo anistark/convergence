@@ -11,7 +11,7 @@ class Post(models.Model):
     post_url = models.CharField(max_length=120)
     author = models.CharField(max_length=120)
     added_by = models.CharField(max_length=32)
-    content = models.CharField(max_length=500)
+    content = models.TextField()
     last_update = models.DateTimeField()
 
 

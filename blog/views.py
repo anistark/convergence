@@ -40,13 +40,15 @@ def admin(request):
 def admin_edit_posts(request):
     if request.method == 'POST' or request.method == 'FILES':
         # save new post
+        content = request.POST['content']
+        print content
         title = request.POST['title']
         # print(request.POST[all])
         admin_username = 'anistark'
         post = Post(title=title)
         post.author = request.POST['author']
         post.last_update = datetime.datetime.now()
-        post.content = request.POST['content']
+        post.content = content
         post.title_image = request.FILES['titleimgfile']
         post.post_url = str(uuid.uuid4().get_hex().upper()[0:16])
         post.added_by = admin_username
